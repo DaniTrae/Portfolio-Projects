@@ -1,0 +1,64 @@
+*/
+Code for gathering data needed to answer questions on the dataset. Dataset used is US Tornado Dataset 1950-2021 by Kaggle user Random Draw.
+https://www.kaggle.com/datasets/danbraswell/us-tornado-dataset-1950-2021
+/*
+
+
+--Total counts for categories (magnitude) of tornadoes--
+--The "-9" values indicate the magnitude of the tornado was not recorded--
+
+SELECT
+  (category), COUNT(category) AS total_per_category
+FROM
+  `portfolioproject1-388916.Tornados.tornado_data`
+GROUP BY 
+  (category)
+  
+  
+  --Total count of tornadoes that occurred each year from 1950 to 2021--
+
+SELECT
+  (year), COUNT(year) AS total_per_year
+FROM
+  `portfolioproject1-388916.Tornados.tornado_data`
+GROUP BY 
+  (year)
+  
+  
+  --Total counts of tornadoes per state over the 72 year span of 1950 to 2021--
+--There are 53 results for this, and only 50 states in the US. The other 3 values are District of Columbia(DC), Puerto Rico(PR), and the Virgin Islands(VI)--
+
+SELECT
+  (state), COUNT(state) AS total_per_state
+FROM
+  `portfolioproject1-388916.Tornados.tornado_data`
+GROUP BY 
+  (state)
+  
+  
+  --Top 10 tonadoes that traveled the farthest between the years 1950 and 2021--
+
+SELECT 
+  *
+FROM
+  `portfolioproject1-388916.Tornados.tornado_data`
+WHERE
+  distance_travled_miles > 100
+ORDER BY
+  (distance_travled_miles) DESC
+  LIMIT 10
+  
+  
+  --Top 10 tornadoes measured in yards between the years 1950 and 2021--
+
+SELECT 
+  *
+FROM
+  `portfolioproject1-388916.Tornados.tornado_data`
+WHERE
+  width_yards > 3000
+ORDER BY
+  (width_yards) DESC
+  LIMIT 10
+  
+  
